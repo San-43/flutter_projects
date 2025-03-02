@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'question_screen.dart';
+import 'package:animations/animations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,11 +25,9 @@ class HomeScreen extends StatelessWidget {
                 // Show the question screen to start the game
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return QuestionScreen();
-                    },
-                  ),
+                  MaterialPageRoute(builder: (context) {       // NEW
+                    return const QuestionScreen();             // NEW
+                  }),
                 );
               },
               child: Text('New Game'),
