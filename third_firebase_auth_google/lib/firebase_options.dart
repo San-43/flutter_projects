@@ -47,26 +47,26 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'a',
-    appId: 'a',
-    messagingSenderId: 'a',
+    apiKey: 'AIzaSyCAgP9E4B14DB-0uCv31uRfl5hph9_jx_U',
+    appId: '1:695807288527:web:fb5163aebb3607e6e3c3ba',
+    messagingSenderId: '695807288527',
     projectId: 'first-auth-f0e41',
     authDomain: 'first-auth-f0e41.firebaseapp.com',
     storageBucket: 'first-auth-f0e41.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'a',
-    appId: 'a',
-    messagingSenderId: 'a',
+    apiKey: 'AIzaSyCrLWu8W-VSddAw7xviJrW6t5OsbjnknDE',
+    appId: '1:695807288527:android:511a98cf1f3c6277e3c3ba',
+    messagingSenderId: '695807288527',
     projectId: 'first-auth-f0e41',
     storageBucket: 'first-auth-f0e41.firebasestorage.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'a',
-    appId: 'a',
-    messagingSenderId: 'a',
+    apiKey: 'AIzaSyCAgP9E4B14DB-0uCv31uRfl5hph9_jx_U',
+    appId: '1:695807288527:web:eeffc2316ea640abe3c3ba',
+    messagingSenderId: '695807288527',
     projectId: 'first-auth-f0e41',
     authDomain: 'first-auth-f0e41.firebaseapp.com',
     storageBucket: 'first-auth-f0e41.firebasestorage.app',
