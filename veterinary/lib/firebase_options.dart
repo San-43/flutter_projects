@@ -50,25 +50,25 @@ class DefaultFirebaseOptions {
     apiKey: 'a',
     appId: 'a',
     messagingSenderId: 'a',
-    projectId: 'first-auth-f0e41',
-    authDomain: 'first-auth-f0e41.firebaseapp.com',
-    storageBucket: 'first-auth-f0e41.firebasestorage.app',
+    projectId: 'veterinary-12a3e',
+    authDomain: 'veterinary-12a3e.firebaseapp.com',
+    storageBucket: 'veterinary-12a3e.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'a',
     appId: 'a',
     messagingSenderId: 'a',
-    projectId: 'first-auth-f0e41',
-    storageBucket: 'first-auth-f0e41.firebasestorage.app',
+    projectId: 'veterinary-12a3e',
+    storageBucket: 'veterinary-12a3e.firebasestorage.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'a',
     appId: 'a',
     messagingSenderId: 'a',
-    projectId: 'first-auth-f0e41',
-    authDomain: 'first-auth-f0e41.firebaseapp.com',
-    storageBucket: 'first-auth-f0e41.firebasestorage.app',
+    projectId: 'veterinary-12a3e',
+    authDomain: 'veterinary-12a3e.firebaseapp.com',
+    storageBucket: 'veterinary-12a3e.firebasestorage.app',
   );
 }
