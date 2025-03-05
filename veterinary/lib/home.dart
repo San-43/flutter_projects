@@ -9,6 +9,16 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          _buildMenuItem(context, 'Nuestras clínicas', [
+            'Buscar clínica',
+            'Servicios veterinarios',
+          ]),
+          _buildMenuItem(context, 'Sobre AniCura', [
+            'Nuestra historia',
+            'Calidad y seguridad',
+          ]),
+          _buildMenuItem(context, 'Trabaja con nosotros', []),
+          _buildMenuItem(context, 'Contacto', []),
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
@@ -53,6 +63,29 @@ class HomeScreen extends StatelessWidget {
             const SignOutButton(),
           ],
         ),
+      ),
+    );
+  }
+  Widget _buildMenuItem(BuildContext context, String title, List<String> options) {
+    if (options.isEmpty) {
+      return TextButton(
+        onPressed: () {},
+        child: Text(title, style: TextStyle(color: Colors.black)),
+      );
+    }
+    return PopupMenuButton<String>(
+      onSelected: (value) {},
+      itemBuilder: (BuildContext context) {
+        return options.map((String option) {
+          return PopupMenuItem<String>(
+            value: option,
+            child: Text(option),
+          );
+        }).toList();
+      },
+      child: TextButton(
+        onPressed: null,
+        child: Text(title, style: TextStyle(color: Colors.black)),
       ),
     );
   }

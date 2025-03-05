@@ -47,26 +47,26 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'a',
-    appId: 'a',
-    messagingSenderId: 'a',
+    apiKey: 'AIzaSyChcOg_N-wDq3Kl7i0ztK-3cDbtjEj-b5I',
+    appId: '1:106217002366:web:a49d521db04893bfe90f2f',
+    messagingSenderId: '106217002366',
     projectId: 'veterinary-12a3e',
     authDomain: 'veterinary-12a3e.firebaseapp.com',
     storageBucket: 'veterinary-12a3e.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'a',
-    appId: 'a',
-    messagingSenderId: 'a',
+    apiKey: 'AIzaSyDHJFABth1U6PW2r_hNYLRELhZsscsnQEw',
+    appId: '1:106217002366:android:2046f1de9ca88e36e90f2f',
+    messagingSenderId: '106217002366',
     projectId: 'veterinary-12a3e',
     storageBucket: 'veterinary-12a3e.firebasestorage.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'a',
-    appId: 'a',
-    messagingSenderId: 'a',
+    apiKey: 'AIzaSyChcOg_N-wDq3Kl7i0ztK-3cDbtjEj-b5I',
+    appId: '1:106217002366:web:baaa372bb1511bfbe90f2f',
+    messagingSenderId: '106217002366',
     projectId: 'veterinary-12a3e',
     authDomain: 'veterinary-12a3e.firebaseapp.com',
     storageBucket: 'veterinary-12a3e.firebasestorage.app',
