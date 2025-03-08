@@ -15,6 +15,7 @@ class _QuizState extends State<Quiz> {
   List<String> selectedAnswer = [];
   String activeScreen = 'home_page';
 
+
   void switchScreen() {
     setState(() {
       activeScreen = 'questions_screen';
@@ -26,14 +27,20 @@ class _QuizState extends State<Quiz> {
     if (selectedAnswer.length == questions.length) {
       setState(() {
         selectedAnswer = [];
-        activeScreen = 'home_page';
+        activeScreen = 'results_screen';
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    Widget screenWidget = HomePage(switchScreen);
+
+    if (activeScreen == 'questions_screen') {
+      screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+    }
+
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -48,9 +55,7 @@ class _QuizState extends State<Quiz> {
             ),
           ),
           child:
-              activeScreen == 'home_page'
-                  ? HomePage(switchScreen)
-                  : QuestionsScreen(onSelectAnswer: chooseAnswer),
+
         ),
       ),
     );
