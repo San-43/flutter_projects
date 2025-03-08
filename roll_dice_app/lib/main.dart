@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'gradient_container.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: GradientContainer(
+          colors: [Colors.blue, Colors.red],
+        ),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -9,29 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Roll Dice App'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                'Hello World!',
-              ),
-              Text(
-                'It\'s time to learn Flutter!',
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
