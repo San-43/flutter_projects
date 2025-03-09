@@ -9,12 +9,11 @@ class AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return ElevatedButton(
       onPressed: onTap,
 
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 2),
         foregroundColor: Colors.white,
         backgroundColor: Color.fromARGB(255, 33, 1, 95),
         elevation: 4,
@@ -25,7 +24,7 @@ class AnswerButton extends StatelessWidget {
       child: Text(answerText, textAlign: TextAlign.center,
       style: GoogleFonts.lato(
         color: const Color.fromARGB(255, 201, 153, 251),
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: FontWeight.bold,
       ),
     ),
