@@ -1,9 +1,8 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_app/questions_summary.dart';
+import 'package:quiz_app/questions_summary/questions_summary.dart';
 
 import 'data/questions.dart';
-import 'home_page.dart';
 
 class ResultsScreen extends StatelessWidget {
   ResultsScreen(this.switchScreen, {super.key, required this.chosenAnswers});
