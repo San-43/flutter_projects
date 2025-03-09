@@ -19,6 +19,7 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen() {
     setState(() {
+      selectedAnswer = [];
       activeScreen = 'questions_screen';
     });
   }
@@ -39,7 +40,7 @@ class _QuizState extends State<Quiz> {
     if (activeScreen == 'questions_screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     } else if (activeScreen == 'results_screen') {
-      screenWidget = ResultsScreen(chosenAnswers: selectedAnswer);
+      screenWidget = ResultsScreen(switchScreen, chosenAnswers: selectedAnswer);
     }
 
 

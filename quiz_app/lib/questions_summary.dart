@@ -9,7 +9,7 @@ class QuestionsSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 425,
+      height: 410,
       child: SingleChildScrollView(
         child: Column(
           children:
@@ -25,9 +25,9 @@ class QuestionsSummary extends StatelessWidget {
                       radius: 15,
                       child: Text(
                         ((data['question_index'] as int) + 1).toString(),
-                        style: GoogleFonts.lato(
+                        style: GoogleFonts.adamina(
                           color: Colors.black,
-                          fontSize: 14,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

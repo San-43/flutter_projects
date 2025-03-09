@@ -5,35 +5,25 @@ import 'package:quiz_app/questions_summary.dart';
 import 'data/questions.dart';
 import 'home_page.dart';
 
-class ResultsScreen extends StatefulWidget {
-  ResultsScreen({super.key, required this.chosenAnswers});
+class ResultsScreen extends StatelessWidget {
+  ResultsScreen(this.switchScreen, {super.key, required this.chosenAnswers});
 
+  final void Function() switchScreen;
   List<String> chosenAnswers;
 
-  @override
-  State<ResultsScreen> createState() => _ResultsScreenState();
-}
-
-class _ResultsScreenState extends State<ResultsScreen> {
   List<Map<String, Object>> getSummaryData() {
     final summary = <Map<String, Object>>[];
 
-    for (int i = 0; i < widget.chosenAnswers.length; i++) {
+    for (int i = 0; i < chosenAnswers.length; i++) {
       summary.add({
         'question_index': i,
         'question': questions[i].text,
         'correct_answer': questions[i].answers[0],
-        'user_answer': widget.chosenAnswers[i],
+        'user_answer': chosenAnswers[i],
       });
     }
 
     return summary;
-  }
-
-  void switchScreen() {
-    setState(() {
-      var activeScreen = 'questions_screen';
-    });
   }
 
   @override
@@ -55,8 +45,8 @@ class _ResultsScreenState extends State<ResultsScreen> {
             Text(
               'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
               style: GoogleFonts.lato(
-                color: Color.fromARGB(240, 230, 200, 253),
-                fontSize: 20,
+                color: Color.fromARGB(255, 230, 200, 253),
+                fontSize: 21,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
@@ -66,7 +56,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
             SizedBox(height: 30),
             TextButton.icon(
               onPressed: () {
-                switchScreen();
+                return switchScreen();
               },
               icon: Icon(Icons.refresh, color: Colors.white, size: 24),
               label: Text(
