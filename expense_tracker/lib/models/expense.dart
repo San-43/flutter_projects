@@ -16,8 +16,16 @@ const categoryIcons = {
 };
 
 class Expense {
+
   Expense({required this.title, required this.amount, required this.date, required this.category})
     : id = uuid.v4();
+
+  Expense.defaultExpense() :
+        id = uuid.v4(),
+        title = '',
+        amount = 0,
+        date = DateTime.now(),
+        category = Category.leisure;
 
   final String id;
   final String title;
