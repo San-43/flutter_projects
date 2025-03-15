@@ -139,46 +139,48 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                     ),
                   if (width >= 600)
-                    Row(children: [
-                      DropdownButton(
-                        value: _selectedCategory,
-                        items:
-                        Category.values
-                            .map(
-                              (category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(category.name.toUpperCase()),
-                          ),
-                        )
-                            .toList(),
-                        onChanged: (value) {
-                          if (value == null) {
-                            return;
-                          }
-                          setState(() {
-                            _selectedCategory = value;
-                          });
-                        },
-                      ),
-                      SizedBox(width: 24,),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              formatter.format(
-                                _selectedDate ?? DateTime.now(),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: _presentDatePicker,
-                              icon: const Icon(Icons.calendar_month_sharp),
-                            ),
-                          ],
+                    Row(
+                      children: [
+                        DropdownButton(
+                          value: _selectedCategory,
+                          items:
+                              Category.values
+                                  .map(
+                                    (category) => DropdownMenuItem(
+                                      value: category,
+                                      child: Text(category.name.toUpperCase()),
+                                    ),
+                                  )
+                                  .toList(),
+                          onChanged: (value) {
+                            if (value == null) {
+                              return;
+                            }
+                            setState(() {
+                              _selectedCategory = value;
+                            });
+                          },
                         ),
-                      )
-                    ],)
+                        SizedBox(width: 24),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                formatter.format(
+                                  _selectedDate ?? DateTime.now(),
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: _presentDatePicker,
+                                icon: const Icon(Icons.calendar_month_sharp),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
                   else
                     Row(
                       children: [
@@ -221,41 +223,58 @@ class _NewExpenseState extends State<NewExpense> {
                       ],
                     ),
                   const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      DropdownButton(
-                        value: _selectedCategory,
-                        items:
-                            Category.values
-                                .map(
-                                  (category) => DropdownMenuItem(
-                                    value: category,
-                                    child: Text(category.name.toUpperCase()),
-                                  ),
-                                )
-                                .toList(),
-                        onChanged: (value) {
-                          if (value == null) {
-                            return;
-                          }
-                          setState(() {
-                            _selectedCategory = value;
-                          });
-                        },
-                      ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Cancel'),
-                      ),
-                      ElevatedButton(
-                        onPressed: _submitExpenseData,
-                        child: const Text('Save Expense'),
-                      ),
-                    ],
-                  ),
+                  if (width >= 600)
+                    Row(
+                      children: [
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _submitExpenseData,
+                          child: const Text('Save Expense'),
+                        ),
+                      ],
+                    )
+                  else
+                    Row(
+                      children: [
+                        DropdownButton(
+                          value: _selectedCategory,
+                          items:
+                              Category.values
+                                  .map(
+                                    (category) => DropdownMenuItem(
+                                      value: category,
+                                      child: Text(category.name.toUpperCase()),
+                                    ),
+                                  )
+                                  .toList(),
+                          onChanged: (value) {
+                            if (value == null) {
+                              return;
+                            }
+                            setState(() {
+                              _selectedCategory = value;
+                            });
+                          },
+                        ),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _submitExpenseData,
+                          child: const Text('Save Expense'),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),
