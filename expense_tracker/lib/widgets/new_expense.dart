@@ -78,6 +78,8 @@ class _NewExpenseState extends State<NewExpense> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (ctx, constraints) {
+        final width = constraints.maxWidth;
+
         return SizedBox(
           height: double.infinity,
           child: SingleChildScrollView(
@@ -90,43 +92,84 @@ class _NewExpenseState extends State<NewExpense> {
               ),
               child: Column(
                 children: [
-                  TextField(
-                    controller: _titleController,
-                    maxLength: 50,
-                    decoration: const InputDecoration(
-                      label: Text('Title'),
-                      hintText: 'Enter title',
-                      border: UnderlineInputBorder(),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: _amountController,
-                          keyboardType: TextInputType.numberWithOptions(
-                            decimal: true,
-                          ),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                              RegExp(r'^\d*\.?\d*$'),
+                  if (width >= 600)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: _titleController,
+                            maxLength: 50,
+                            decoration: const InputDecoration(
+                              label: Text('Title'),
+                              hintText: 'Enter title',
+                              border: UnderlineInputBorder(),
                             ),
-                          ],
-                          decoration: const InputDecoration(
-                            prefixText: '\$ ',
-                            label: Text('Amount'),
-                            border: OutlineInputBorder(),
                           ),
                         ),
+                        const SizedBox(width: 24),
+                        Expanded(
+                          child: TextField(
+                            controller: _amountController,
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'^\d*\.?\d*$'),
+                              ),
+                            ],
+                            decoration: const InputDecoration(
+                              prefixText: '\$ ',
+                              label: Text('Amount'),
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    TextField(
+                      controller: _titleController,
+                      maxLength: 50,
+                      decoration: const InputDecoration(
+                        label: Text('Title'),
+                        hintText: 'Enter title',
+                        border: UnderlineInputBorder(),
                       ),
-                      const SizedBox(width: 16),
+                    ),
+                  if (width >= 600)
+                    Row(children: [
+                      DropdownButton(
+                        value: _selectedCategory,
+                        items:
+                        Category.values
+                            .map(
+                              (category) => DropdownMenuItem(
+                            value: category,
+                            child: Text(category.name.toUpperCase()),
+                          ),
+                        )
+                            .toList(),
+                        onChanged: (value) {
+                          if (value == null) {
+                            return;
+                          }
+                          setState(() {
+                            _selectedCategory = value;
+                          });
+                        },
+                      ),
+                      SizedBox(width: 24,),
                       Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              formatter.format(_selectedDate ?? DateTime.now()),
+                              formatter.format(
+                                _selectedDate ?? DateTime.now(),
+                              ),
                             ),
                             IconButton(
                               onPressed: _presentDatePicker,
@@ -134,9 +177,49 @@ class _NewExpenseState extends State<NewExpense> {
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
+                      )
+                    ],)
+                  else
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: _amountController,
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(r'^\d*\.?\d*$'),
+                              ),
+                            ],
+                            decoration: const InputDecoration(
+                              prefixText: '\$ ',
+                              label: Text('Amount'),
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                formatter.format(
+                                  _selectedDate ?? DateTime.now(),
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: _presentDatePicker,
+                                icon: const Icon(Icons.calendar_month_sharp),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   const SizedBox(height: 16),
                   Row(
                     children: [
