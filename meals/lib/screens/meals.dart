@@ -20,7 +20,12 @@ class MealsScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Nothing here!'),
+            Text(
+              'Nothing here!',
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
             SizedBox(height: 16),
             Text(
               'Try selecting a different category!',
@@ -33,9 +38,6 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: content,
-    );
+    return Scaffold(appBar: AppBar(title: Text(title)), body: content);
   }
 }
