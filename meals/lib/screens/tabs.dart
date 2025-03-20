@@ -57,7 +57,9 @@ class _TabsScreenState extends State<TabsScreen> {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
-        MaterialPageRoute(builder: (ctx) => const FiltersScreen()),
+        MaterialPageRoute(
+          builder: (ctx) => FiltersScreen(initialFilters: _filters),
+        ),
       );
       setState(() {
         _filters = result ?? kInitialFilters;
@@ -73,24 +75,26 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableMeals = dummyMeals.where((meal) {
-      if (_filters[Filter.glutenFree]! && !meal.isGlutenFree) {
-        return false;
-      }
-      if (_filters[Filter.lactoseFree]! && !meal.isLactoseFree) {
-        return false;
-      }
-      if (_filters[Filter.vegetarian]! && !meal.isVegetarian) {
-        return false;
-      }
-      if (_filters[Filter.vegan]! && !meal.isVegan) {
-        return false;
-      }
-      return true;
-    }).toList();
+    final availableMeals =
+        dummyMeals.where((meal) {
+          if (_filters[Filter.glutenFree]! && !meal.isGlutenFree) {
+            return false;
+          }
+          if (_filters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+            return false;
+          }
+          if (_filters[Filter.vegetarian]! && !meal.isVegetarian) {
+            return false;
+          }
+          if (_filters[Filter.vegan]! && !meal.isVegan) {
+            return false;
+          }
+          return true;
+        }).toList();
 
     Widget activePage = CategoriesScreen(
       onToggleFavorite: _toggleFavoriteStatus,
+      availableMeals: availableMeals,
     );
     String activePageTitle = 'Categories';
 
