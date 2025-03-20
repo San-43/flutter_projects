@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../data/dummy_data.dart';
 import '../models/meal.dart';
 import '../widgets/main_drawer.dart';
 import 'categories.dart';
 import 'filters.dart';
 import 'meals.dart';
+
+const kInitialFilters = {
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegetarian: false,
+  Filter.vegan: false,
+};
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -16,6 +24,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
+  Map<Filter, bool> _filters = kInitialFilters;
 
   void _showInfoMessage(bool isFavorite) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -48,15 +57,11 @@ class _TabsScreenState extends State<TabsScreen> {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
-        MaterialPageRoute(
-          builder: (ctx) => const FiltersScreen(),
-        ),
+        MaterialPageRoute(builder: (ctx) => const FiltersScreen()),
       );
-      if (result != null) {
-        setState(() {
-          _filters = result;
-        });
-      }
+      setState(() {
+        _filters = result ?? kInitialFilters;
+      });
     }
   }
 
@@ -68,6 +73,22 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals = dummyMeals.where((meal) {
+      if (_filters[Filter.glutenFree]! && !meal.isGlutenFree) {
+        return false;
+      }
+      if (_filters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+        return false;
+      }
+      if (_filters[Filter.vegetarian]! && !meal.isVegetarian) {
+        return false;
+      }
+      if (_filters[Filter.vegan]! && !meal.isVegan) {
+        return false;
+      }
+      return true;
+    }).toList();
+
     Widget activePage = CategoriesScreen(
       onToggleFavorite: _toggleFavoriteStatus,
     );
