@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/favorites_provider.dart';
-import '../models/meal.dart';
+import '../providers/filters_provider.dart';
 import '../providers/meals_provider.dart';
 import '../widgets/main_drawer.dart';
 import 'categories.dart';
@@ -24,19 +24,15 @@ class TabsScreen extends ConsumerStatefulWidget {
 
 class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
-  Map<Filter, bool> _filters = kInitialFilters;
 
   void _setScreen(String identifier) async {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
-      final result = await Navigator.of(context).push<Map<Filter, bool>>(
+      await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
-          builder: (ctx) => FiltersScreen(initialFilters: _filters),
+          builder: (ctx) => const FiltersScreen(),
         ),
       );
-      setState(() {
-        _filters = result ?? kInitialFilters;
-      });
     }
   }
 
@@ -49,18 +45,19 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     final meals = ref.watch(mealsProvider);
+    final activeFilters = ref.watch(filterProvider);
 
     final availableMeals = meals.where((meal) {
-          if (_filters[Filter.glutenFree]! && !meal.isGlutenFree) {
+          if (activeFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
             return false;
           }
-          if (_filters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+          if (activeFilters[Filter.lactoseFree]! && !meal.isLactoseFree) {
             return false;
           }
-          if (_filters[Filter.vegetarian]! && !meal.isVegetarian) {
+          if (activeFilters[Filter.vegetarian]! && !meal.isVegetarian) {
             return false;
           }
-          if (_filters[Filter.vegan]! && !meal.isVegan) {
+          if (activeFilters[Filter.vegan]! && !meal.isVegan) {
             return false;
           }
           return true;
