@@ -6,10 +6,26 @@ import '../models/meal.dart';
 import '../widgets/category_grid_item.dart';
 import 'meals.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key, required this.availableMeals});
 
   final List<Meal> availableMeals;
+
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+        vsync: 
+    );
+  }
+
 
   void _selectCategory(BuildContext context, Category category) {
     Navigator.of(context).push(
@@ -18,7 +34,7 @@ class CategoriesScreen extends StatelessWidget {
             (ctx) => MealsScreen(
               title: category.title,
               meals:
-                  availableMeals
+                  widget.availableMeals
                       .where((meal) => meal.categories.contains(category.id))
                       .toList(),
             ),
